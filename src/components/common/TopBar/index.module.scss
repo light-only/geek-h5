@@ -1,0 +1,31 @@
+@import '@/assets/style/hairline.scss';
+.root {
+  position: relative;
+  display:flex;
+  align-items:center;
+  height:46px;
+  width:100%;
+  background-color:#fff;
+  //border-bottom:1px solid red;
+  @include hairline(bottom,red);
+  :global {
+    .left {
+      padding: 0 12px 0 16px;
+      line-height: 46px;
+    }
+    .icon {
+      font-size:16px;
+    }
+    .title {
+      flex: 1;
+      margin: 0 auto;
+      font-weight: 500;
+      font-size:16px;
+      text-align: center;
+    }
+    .right {
+      padding-right: 16px;
+      width:48px;
+    }
+  }
+}
