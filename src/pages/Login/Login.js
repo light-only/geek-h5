@@ -3,8 +3,11 @@ import TopBar from "@/components/common/TopBar";
 import Input from '@/components/common/Input'
 import { useFormik } from 'formik'
 import classNames from "classnames";
+import { useDispatch } from 'react-redux'
 import * as Yup from 'yup'
+import {sendCode} from "../../store/actions/login";
 export default  function Login() {
+        const dispatch = useDispatch();
         const formik = useFormik({
             initialValues:{
                 mobile:'',
@@ -19,7 +22,14 @@ export default  function Login() {
             })
         });
     const onExtraClick = ()=>{
-        console.log('haha')
+        //先对手机号进行验证
+        if(!/^1[3-9]\d{9}$/.test(mobile)){
+            formik.setTouched({
+                mobile:true
+            })
+            return;
+        }
+        dispatch(sendCode(mobile))
     }
     const {values:{mobile,code},handleChange,handleSubmit,errors,handleBlur,touched ,isValid} = formik;
     return (
